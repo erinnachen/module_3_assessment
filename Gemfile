@@ -11,13 +11,14 @@ gem "jbuilder", "~> 2.0"
 gem "faker"
 gem "therubyracer"
 gem "less-rails-bootstrap"
-gem "minitest-rails"
 
 group :development do
   gem "spring"
 end
 
 group :development, :test do
-  gem "minitest-rails-capybara"
+  gem 'rspec-rails', '~> 3.0'
+  gem 'capybara'
+  gem 'launchy'
   gem "pry", :require => "pry"
 end
