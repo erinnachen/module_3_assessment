@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.feature "User visits the root page", :type => :feature do
   scenario "see items show page" do
     visit '/'
-    fill_in "Search", with: "sennheiser"
+    fill_in "search[description]", with: "sennheiser"
     click_on "search"
 
     expect(current_path).to eq "/search"
