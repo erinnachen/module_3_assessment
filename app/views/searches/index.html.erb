@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h1><%= @results.count %> Results</h1>
+    </div>
+  </div>
+  <div class="row"></div>
+  <% @results.each do |result| %>
+    <div class="col-sm-3">
+      <h5><%= result.name %></h5>
+      <%= image_tag(result.image_url) %>
+      <p>
+        <%= result.description %>
+      </p>
+    </div>
+  <% end %>
+</div>
