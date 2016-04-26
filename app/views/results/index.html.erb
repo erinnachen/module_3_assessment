@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h1><%= @results.count %> Results</h1>
+    </div>
+  </div>
+  <div class="row"></div>
+  <div class="results">
+    <% @results.each_with_index do |result, n| %>
+      <div class="row" id="<%="result-#{n+1}"%>">
+        <%= render partial: "result", locals:{result: result} %>
+      </div>
+    <% end %>
+  </div>
+</div>

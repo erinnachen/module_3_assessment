@@ -10,8 +10,8 @@ class Result
     @sale_price = data[:salePrice]
   end
 
-  def self.where(description)
-    service.search_by_description(description).map {|result_data|
+  def self.where(params)
+    service.search_by_description(params[:description]).map {|result_data|
       Result.new(result_data)
     }
   end

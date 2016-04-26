@@ -1,0 +1,12 @@
+<div class="col-md-4">
+  <%= image_tag result.image_url, class: "result-img"%>
+</div>
+<div class="col-md-8">
+  <h3>Name: <%= result.name %></h5>
+  <h5>SKU: <%= result.sku %></h5>
+  <h5>Customer average review: <%= result.avg_review %></h5>
+  <h5>Sale price: $<%= result.sale_price %></h5>
+  <p>
+    Short description: <%= result.short_desc %>
+  </p>
+</div>
