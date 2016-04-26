@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Items index", :type => :request do
+RSpec.describe "GET /api/v1/items", :type => :request do
 
   it "gets all items with their properties but not time-related props" do
     3.times do |n|

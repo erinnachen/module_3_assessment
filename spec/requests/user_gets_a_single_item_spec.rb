@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "/api/v1/items/:id", :type => :request do
+RSpec.describe "GET /api/v1/items/:id", :type => :request do
 
   it "gets a single item, only containing name, description, image_url" do
     3.times do |n|

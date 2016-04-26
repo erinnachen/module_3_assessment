@@ -1,8 +1,8 @@
 require "rails_helper"
 
-RSpec.describe "Items index", :type => :request do
+RSpec.describe "DELETE /api/v1/items/:id", :type => :request do
 
-  it "gets all items with their properties but not time-related props" do
+  it "gets a 204 response" do
     3.times do |n|
       Item.create(name: "Item ##{n}", description: "All those things #{n} times", image_url: "http://media.mydogspace.com.s3.amazonaws.com/wp-content/uploads/2013/08/puppy-500x350.jpg")
     end
