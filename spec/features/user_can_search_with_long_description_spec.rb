@@ -8,16 +8,13 @@ RSpec.feature "User searches from the root page with involved description", :typ
       click_on "search"
 
       expect(current_path).to eq "/search"
-      save_and_open_page
-    #   within("#result-9") do
-    #     expect(page).to have_content "Name: Sennheiser - CX 1.00 Earbud Headphones - White"
-    #     expect(page).to have_content "SKU: 9068191"
-    #     expect(page).to have_content "Customer average review: 5.0"
-    #     expect(page).to have_content "Short description: SENNHEISER CX 1.00 Earbud Headphones: Noise-blocking design; dynamic transducer principle; ultrasmall design; 3.5mm connector; 3.9' cable; includes 4 sizes of ear adapters"
-    #     expect(page).to have_content "Sale price: $44.95"
-    #     expect(page).to have_css "img[src='http://img.bbystatic.com/BestBuy_US/images/products/9068/9068191_sa.jpg']"
-    #   end
-    #   expect(page).to_not have_css "#result-16"
+      within(".results") do
+        skus = [9068191, 9068155, 9068182, 9068004, 9068013, 9068128]
+        skus.each do |sku|
+          expect(page).to have_content "SKU: #{sku}"
+        end
+      end
+      expect(page).to_not have_css "#result-7"
     end
   end
 end

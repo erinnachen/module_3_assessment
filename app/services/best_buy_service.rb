@@ -8,9 +8,9 @@ class BestBuyService
   end
 
   def search_by_description(description)
-    description = 
+    description = description.gsub(/ /,"*%20")
     response = conn.get do |req|
-      req.url "/v1/products(longDescription=\"#{description}*\")"
+      req.url "/v1/products(longDescription=#{description}*)"
       req.params['show'] = "customerReviewAverage,shortDescription,name,sku,salePrice,image"
       req.params['pageSize'] = 15
       req.params['apiKey'] = ENV['BESTBUY_API']
