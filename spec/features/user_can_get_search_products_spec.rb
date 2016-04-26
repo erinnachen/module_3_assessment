@@ -1,14 +1,13 @@
 require 'rails_helper'
 
-RSpec.feature "User visits the root page", :type => :feature do
-  scenario "see items show page" do
+RSpec.feature "User searches from the root page", :type => :feature do
+  scenario "see results limited to 15 results" do
     VCR.use_cassette "search#index_by_description" do
       visit '/'
       fill_in "search[description]", with: "sennheiser"
       click_on "search"
 
       expect(current_path).to eq "/search"
-      save_and_open_page
       within("#result-9") do
         expect(page).to have_content "Name: Sennheiser - CX 1.00 Earbud Headphones - White"
         expect(page).to have_content "SKU: 9068191"
