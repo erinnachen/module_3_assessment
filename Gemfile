@@ -25,7 +25,7 @@ group :development, :test do
   gem "pry", :require => "pry"
 end
 
-# group :test do
-#   gem 'vcr'
-#   gem 'webmock'
-# end
+group :test do
+  gem 'vcr'
+  gem 'webmock'
+end
