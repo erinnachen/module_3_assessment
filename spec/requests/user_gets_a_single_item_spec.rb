@@ -11,13 +11,10 @@ RSpec.describe "/api/v1/items/:id", :type => :request do
     get "/api/v1/items/#{item.id}"
 
     expect(response.status).to eq 200
-    items_json = JSON.parse(response.body, symbolize_names: true)[:items]
+    item_info = JSON.parse(response.body, symbolize_names: true)[:item]
 
-    item_info = items_json[1]
-
-    expect(items_json.count).to eq 3
-    expect(item_info[:name]).to eq "Item #1"
-    expect(item_info[:description]).to eq "All those things 1 times"
+    expect(item_info[:name]).to eq "Item #2"
+    expect(item_info[:description]).to eq "All those things 2 times"
     expect(item_info[:image_url]).to eq "http://media.mydogspace.com.s3.amazonaws.com/wp-content/uploads/2013/08/puppy-500x350.jpg"
     expect(item_info[:created_at]).to be_nil
     expect(item_info[:updated_at]).to be_nil
