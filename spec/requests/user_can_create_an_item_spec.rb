@@ -4,7 +4,7 @@ RSpec.describe "POST /api/v1/items/:id", :type => :request do
 
   it "gets a new item, only containing name, description, image_url" do
     payload = {name: "New Item", description: "Super fun item", image_url:"http://media.mydogspace.com.s3.amazonaws.com/wp-content/uploads/2013/08/puppy-500x350.jpg"}
-    post "/api/v1/items", payload.to_json
+    post "/api/v1/items", payload
 
     expect(response.status).to eq 201
     item_info = JSON.parse(response.body, symbolize_names: true)[:item]

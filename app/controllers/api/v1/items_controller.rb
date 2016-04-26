@@ -8,7 +8,16 @@ class Api::V1::ItemsController < Api::V1::BaseController
     respond_with Item.find(params[:id])
   end
 
+  def create
+    respond_with Item.create(item_params)
+  end
+
   def destroy
     respond_with :nothing, status: 204 if Item.delete(params[:id])
   end
+
+  private
+    def item_params
+      params.permit(:name, :description, :image_url)
+    end
 end
