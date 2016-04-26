@@ -5,26 +5,38 @@ class BestBuyService
       faraday.response :logger
       faraday.adapter  Faraday.default_adapter
     end
+    set_connection_params
+  end
+
+  def get(path)
+    conn.get do |req|
+      req.url path
+    end
   end
 
   def search_by_description(description)
-    description = description.gsub(/ /,"*%20")
-    response = conn.get do |req|
-      req.url "/v1/products(longDescription=#{description}*)"
-      req.params['show'] = "customerReviewAverage,shortDescription,name,sku,salePrice,image"
-      req.params['pageSize'] = 15
-      req.params['apiKey'] = ENV['BESTBUY_API']
-      req.params['format'] = 'json'
-    end
-    parse_response(response)[:products]
+    desc = format_description(description)
+    path = "/v1/products(longDescription=#{desc}*)"
+    parse_response(get(path), :products)
   end
 
   private
-    def parse_response(response)
-      JSON.parse(response.body, symbolize_names: true)
+    def parse_response(response, type)
+      JSON.parse(response.body, symbolize_names: true)[type]
     end
 
     def conn
       @_conn
+    end
+
+    def set_connection_params
+      conn.params['apiKey'] = ENV['BESTBUY_API']
+      conn.params['format'] = 'json'
+      conn.params['show'] = "customerReviewAverage,shortDescription,name,sku,salePrice,image"
+      conn.params['pageSize'] = 15
+    end
+
+    def format_description(desc)
+      desc.gsub(/ /,"*%20")
     end
 end
