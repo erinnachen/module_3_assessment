@@ -11,10 +11,6 @@ RSpec.describe "Items index", :type => :request do
     delete "/api/v1/items/#{item.id}"
 
     expect(response.status).to eq 204
-
-    visit "/items/#{item.id}"
-    expect(page).to_not have_content "Item ##{item.id}"
-    expect(page).to_not have_content "All those things 2 times"
   end
 
 end
